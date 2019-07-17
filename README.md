@@ -16,6 +16,9 @@ These steps will cover:
   * Provision a virtual machine with Oracle Linux 7.6 and set up SSH keys for remote access. These instructions are based on running the VM on an Oracle Cloud Infrastructure Compute Instance.
 * Oracle Database 19.1 Multitenant
   * Provision an Oracle Database 19.1 Multitenant and record the following attributes: DB public IP address, DB port number, service name, root username, and root password.
+* Kafka
+* Zookeeper
+* Oracle Golden Gate Big Data
 
 ## File Structure
 In the /home/opc directory of the Oracle Linux VM Create these three directories:
