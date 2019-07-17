@@ -33,7 +33,7 @@ mkdir osa
 ```
 
 ## Installing Java Developer Kit
-1. Download the Java Development Kit version 8, update 131 (jdk-8u131-linux-x64.tar.gz) from this link: https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html
+1. Download the Java Development Kit version 8, update 131 (jdk-8u131-linux-x64.tar.gz) from [this link](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html):
 2. Copy the downloaded tar file to the java folder on the Linux VM:
 ```
 scp -i <private_key_path> jdk-8u131-linux-x64.tar.gz opc@<vm_ip_address>:/home/opc/java/jdk-8u131-linux-x64.tar.gz
@@ -46,11 +46,11 @@ tar zxvf jre-8u131-linux-x64.tar.gz
 ```
 sudo vim /etc/environment
 ```
-   * Modified file:
-     ```
-     PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/opc/java/jdk1.8.0_131/bin":$PATH
-     JAVA_HOME="/home/opc/java/jdk1.8.0_131"
-     ```
+Modified file:
+```
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/opc/java/jdk1.8.0_131/bin":$PATH
+JAVA_HOME="/home/opc/java/jdk1.8.0_131"
+```
 5. Perform install actions for Java:
 ```
 sudo update-alternatives --install "/usr/bin/java" "java" "/home/opc/java/jdk1.8.0_131/bin/java" 0
@@ -70,7 +70,7 @@ java -version
 ```
 
 ## Installing Apache Spark
-1. Download Spark 2.2.1 for Hadoop 2.7 (spark-2.2.1-bin-hadoop2.7.tgz) from this link: https://archive.apache.org/dist/spark/spark-2.2.1/
+1. Download Spark 2.2.1 for Hadoop 2.7 (spark-2.2.1-bin-hadoop2.7.tgz) from [this link](https://archive.apache.org/dist/spark/spark-2.2.1/):
 2. Copy the downloaded tar file to the spark folder on the Linux VM:
 ```
 scp -i <private_key_path> spark-2.2.1-bin-hadoop2.7.tgz opc@<vm_ip_address>:/home/opc/spark/spark-2.2.1-bin-hadoop2.7.tgz
@@ -82,7 +82,7 @@ tar zxvf spark-2.2.1-bin-hadoop2.7.tgz
 4. The rest of the Spark configuration will be done in OSA configuration files, so move on to 'Installing and Configuring OSA.'
 
 ## Installing and configuring OSA
-1. Download Oracle Stream Analytics 18.1.0.0.1 (V978767-01.zip) from this link: https://www.oracle.com/middleware/technologies/stream-analytics/downloads.html#
+1. Download Oracle Stream Analytics 18.1.0.0.1 (V978767-01.zip) from [this link](https://www.oracle.com/middleware/technologies/stream-analytics/downloads.html#):
 2. Copy the downloaded tar file to the osa folder on the Linux VM:
 ```
 scp -i <private_key_path> V978767-01.zip opc@<vm_ip_address>:/home/opc/osa/ V978767-01.zip
@@ -206,7 +206,7 @@ sudo systemctl restart vncserver@\:1.service
 ```
 
 ## Accessing OSA with VNC Viewer
-1. Install VNC Viewer on the local machine from this link: https://www.realvnc.com/en/connect/download/viewer/
+1. Install VNC Viewer on the local machine from [this link](https://www.realvnc.com/en/connect/download/viewer/):
 2. Connect to the VNC Server on the Oracle Linux VM (still using port 5901 as an example):
 ```
 ssh -i ~/.ssh/osaVM.txt -L 5901:localhost:5901 opc@<vm_public_ip_address> -N &
