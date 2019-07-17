@@ -4,6 +4,7 @@ This document provides step by step instructions to install Oracle Stream Analyt
 These steps will cover:
 * File structure
 * Installing Java Developer Kit
+* Installing Apache Kafka
 * Installing Apache Spark
 * Installing and configuring OSA
 * Starting and stopping OSA
@@ -26,11 +27,15 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ```
    mkdir java
    ```
-2. spark
+2. kafka
+   ```
+   mkdir kafka
+   ```
+3. spark
    ```
    mkdir spark
    ```
-3. osa
+4. osa
    ```
    mkdir osa
    ```
@@ -70,6 +75,36 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
 6. Close the SSH connection and reconnect, then verify the Java installation:
    ```
    java -version
+   ```
+
+## Installing Apache Kafka
+1. Navigate to the kafka directory:
+   ```
+   cd kafka
+   ```
+2. Download the Kafka 2.3.0 binary for Scala 2.12 using [this link](https://kafka.apache.org/downloads) and the following command:
+   ```
+   wget <kafka_binary_mirror_link>
+   ```
+3. Extract the files from the tar file to the kafka directory:
+   ```
+   tar zxvf kafka_2.12-2.3.0.tg
+   ```
+4. Navigate to the kafka_2.12-2.3.0 directory:
+   ```
+   cd kafka_2.12-2.3.0
+   ```
+5. Start the Zookeeper server:
+   ```
+   bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+   ```
+6. Start the Kafka server:
+   ```
+   bin/kafka-server-start.sh config/server.properties
+   ```
+7. Stop the Kafka server:
+   ```
+   [control] + c
    ```
 
 ## Installing Apache Spark
