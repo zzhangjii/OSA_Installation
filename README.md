@@ -183,14 +183,14 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ./start-osa.sh dbroot=<DB_root_user> dbroot_password=<DB_root_password>
    ```
 11. Upon accessing OSA via a web browser, there are some configuration parameters that need to be set:
-   * Click on the user icon in the top right corner of the screen and select system settings
+    * Click on the user icon in the top right corner of the screen and select system settings
       ![image](https://user-images.githubusercontent.com/42782692/61556929-c2c26400-aa17-11e9-8e70-0b66967c7a96.png)
-   * Set the Kafka ZooKeeper Connection to "localhost:2181"
-   * Set the Runtime Server to "Spark Standalone"
-   * Go to <vm_public_ip_address>:8080 on a web browser (or localhost:8080 from inside the VM) and copy the Spark Master route that follows "spark://"
-   * Enter the Spark Master route into the Spark REST URL parameter in OSA's system settings.
-   * Select the NFS storage option, and set the path to "tmp/spark-deploy"
-   * Click save
+    * Set the Kafka ZooKeeper Connection to "localhost:2181"
+    * Set the Runtime Server to "Spark Standalone"
+    * Go to <vm_public_ip_address>:8080 on a web browser (or localhost:8080 from inside the VM) and copy the Spark Master route that follows "spark://"
+    * Enter the Spark Master route into the Spark REST URL parameter in OSA's system settings.
+    * Select the NFS storage option, and set the path to "tmp/spark-deploy"
+    * Click save
 
 ## Starting and stopping OSA
 After the initial installation, start and stop OSA using these steps.
