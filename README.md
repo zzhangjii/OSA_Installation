@@ -10,6 +10,7 @@ These steps will cover:
 * Starting and stopping OSA
 * Setting up VNC Server
 * Accessing OSA with VNC Viewer
+* Post-Installation Configuration
 * References
 
 ## Prerequisites
@@ -182,15 +183,6 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ```
    ./start-osa.sh dbroot=<DB_root_user> dbroot_password=<DB_root_password>
    ```
-11. Upon accessing OSA via a web browser, there are some configuration parameters that need to be set:
-    * Click on the user icon in the top right corner of the screen and select system settings
-      ![image](https://user-images.githubusercontent.com/42782692/61556929-c2c26400-aa17-11e9-8e70-0b66967c7a96.png)
-    * Set the Kafka ZooKeeper Connection to "localhost:2181"
-    * Set the Runtime Server to "Spark Standalone"
-    * Go to <vm_public_ip_address>:8080 on a web browser (or localhost:8080 from inside the VM) and copy the Spark Master route that follows "spark://"
-    * Enter the Spark Master route into the Spark REST URL parameter in OSA's system settings.
-    * Select the NFS storage option, and set the path to "tmp/spark-deploy"
-    * Click save
 
 ## Starting and stopping OSA
 After the initial installation, start and stop OSA using these steps.
@@ -265,15 +257,28 @@ These steps should be performed on the Oracle Linux VM.
    ```
    ssh -i ~/.ssh/osaVM.txt -L 5901:localhost:5901 opc@<vm_public_ip_address> -N &
    ```
-3. Open VNC Viewer, double-click on the correct connection, and enter the password that was previously set to access the desktop environment.
-4. To disconnect, run the command below.  The process ID can be found as output from the command in step 2:
+3. Open VNC Viewer, click on "File," then click "New Connection."
+4. In the VNC Server parameter, enter localhost:<vnc_server_port> and give the connection a name. 
+5. On the next page, enter the password that was previously set to access the desktop environment.
+6. To disconnect, run the command below.  The process ID can be found as output from the command in step 2:
    ```
    Kill -9 <process_ID>
    ```
-5. Verify the disconnection by checking the machine's list of ssh connections:
+7. Verify the disconnection by checking the machine's list of ssh connections:
    ```
    ps aux | grep ssh
    ```
+
+## Post-Installation Configuration
+Upon accessing OSA via a web browser, there are some configuration parameters that need to be set:
+   * Click on the user icon in the top right corner of the screen and select system settings
+     ![image](https://user-images.githubusercontent.com/42782692/61556929-c2c26400-aa17-11e9-8e70-0b66967c7a96.png)
+   * Set the Kafka ZooKeeper Connection to "localhost:2181"
+   * Set the Runtime Server to "Spark Standalone"
+   * Go to <vm_public_ip_address>:8080 on a web browser (or localhost:8080 from inside the VM) and copy the Spark Master route that follows "spark://"
+   * Enter the Spark Master route into the Spark REST URL parameter in OSA's system settings.
+   * Select the NFS storage option, and set the path to "tmp/spark-deploy"
+   * Click save
 
 ## References
 * [Official OSA Installation Documentation](https://docs.oracle.com/en/middleware/fusion-middleware/osa/18.1/install-stream-analytics/how-install-oracle-stream-analytics.html#GUID-13BC895D-6AD1-4398-98E2-B5BE5B14D26B)
