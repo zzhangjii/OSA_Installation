@@ -48,7 +48,7 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ```
 3. Extract the files from the tar file to the java directory:
    ```
-   tar zxvf jre-8u131-linux-x64.tar.gz
+   tar zxvf jdk-8u131-linux-x64.tar.gz
    ```
 4. Edit the environment variables to reflect the path to java, as shown in the modified file sample below:
    ```
@@ -117,7 +117,14 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ```
    tar zxvf spark-2.2.1-bin-hadoop2.7.tgz
    ```
-4. The rest of the Spark configuration will be done in OSA configuration files, so move on to 'Installing and Configuring OSA.'
+4. Navigate to the spark-2.2.1-bin-hadoop2.7/sbin directory and start Spark:
+   ```
+   cd spark-2.2.1-bin-hadoop2.7/sbin
+   ```
+   ```
+   ./start-master.sh
+   ```
+5. The rest of the Spark configuration will be done in OSA configuration files, so move on to 'Installing and Configuring OSA.'
 
 ## Installing and configuring OSA
 1. Download Oracle Stream Analytics 18.1.0.0.1 (V978767-01.zip) from [this link](https://www.oracle.com/middleware/technologies/stream-analytics/downloads.html#).
@@ -175,6 +182,15 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ```
    ./start-osa.sh dbroot=<DB_root_user> dbroot_password=<DB_root_password>
    ```
+11. Upon accessing OSA via a web browser, there are some configuration parameters that need to be set:
+   a. Click on the user icon in the top right corner of the screen and select system settings
+      ![image](https://user-images.githubusercontent.com/42782692/61556929-c2c26400-aa17-11e9-8e70-0b66967c7a96.png)
+   b. Set the Kafka ZooKeeper Connection to "localhost:2181"
+   c. Set the Runtime Server to "Spark Standalone"
+   d. Go to <vm_public_ip_address>:8080 on a web browser (or localhost:8080 from inside the VM) and copy the Spark Master route that follows "spark://"
+   e. Enter the Spark Master route into the Spark REST URL parameter in OSA's system settings.
+   f. Select the NFS storage option, and set the path to "tmp/spark-deploy"
+   g. Click save
 
 ## Starting and stopping OSA
 After the initial installation, start and stop OSA using these steps.
