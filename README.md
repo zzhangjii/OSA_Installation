@@ -7,9 +7,10 @@ These steps will cover:
 * Installing Apache Kafka
 * Installing Apache Spark
 * Installing and configuring OSA
-* Starting and stopping OSA
 * Setting up VNC Server
-* Accessing OSA with VNC Viewer
+* Setting up VNC Viewer
+* Starting the OSA environment
+* Stopping the OSA environment
 * Post-Installation Configuration
 * References
 
@@ -91,22 +92,6 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ```
    tar zxvf kafka_2.12-2.3.0.tg
    ```
-4. Navigate to the kafka_2.12-2.3.0 directory:
-   ```
-   cd kafka_2.12-2.3.0
-   ```
-5. Start the Zookeeper server:
-   ```
-   bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
-   ```
-6. Start the Kafka server:
-   ```
-   bin/kafka-server-start.sh config/server.properties
-   ```
-7. Stop the Kafka server:
-   ```
-   [control] + c
-   ```
 
 ## Installing Apache Spark
 1. Download Spark 2.2.1 for Hadoop 2.7 (spark-2.2.1-bin-hadoop2.7.tgz) from [this link](https://archive.apache.org/dist/spark/spark-2.2.1/).
@@ -118,14 +103,26 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ```
    tar zxvf spark-2.2.1-bin-hadoop2.7.tgz
    ```
-4. Navigate to the spark-2.2.1-bin-hadoop2.7/sbin directory and start Spark:
+4. Nagivate to the spark-2.2.1-bin-hadoop2.7/conf directory:
    ```
-   cd spark-2.2.1-bin-hadoop2.7/sbin
+   cd spark-2.2.1-bin-hadoop2.7/conf
+   ```
+5. Copy the spark-env.sh.template file to spark-env.sh in the same directory:
+   ```
+   cp spark-env.sh.template spark-env.sh
+   ```
+6. Open spark-env.sh for editing:
+   ```
+   vim spark-env.sh
+   ```
+7. Add the following lines below their corresponding properties in spark-env.sh:
+   ```
+   export SPARK_WORKER_CORES=12
    ```
    ```
-   ./start-master.sh
+   export SPARK_WORKER_MEMORY=10g
    ```
-5. The rest of the Spark configuration will be done in OSA configuration files, so move on to 'Installing and Configuring OSA.'
+8. The rest of the Spark configuration will be done in OSA configuration files and in later steps, so move on to 'Installing and Configuring OSA.'
 
 ## Installing and configuring OSA
 1. Download Oracle Stream Analytics 18.1.0.0.1 (V978767-01.zip) from [this link](https://www.oracle.com/middleware/technologies/stream-analytics/downloads.html#).
@@ -174,29 +171,6 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
            </New>
        </Arg>
    </New>
-   ```
-9. Navigate to the osa/OSA-18.1.0.0.1/osa-base/bin directory:
-   ```
-   cd OSA-18.1.0.0.1/osa-base/bin
-   ```
-10. Start OSA with the initialization steps.  The first time OSA is started, the script will create a default admin user for OSA called osaadmin, and it will create metadata tables in the designated database.  The initialization will provide a prompt to set the password for the default OSA user.  After this, OSA will start running, where it will be accessible via this address: <vm_public_ip_address>:9080/osa
-   ```
-   ./start-osa.sh dbroot=<DB_root_user> dbroot_password=<DB_root_password>
-   ```
-
-## Starting and stopping OSA
-After the initial installation, start and stop OSA using these steps.
-1. Navigate to the osa/OSA-18.1.0.0.1/osa-base/bin directory:
-   ```
-   cd OSA-18.1.0.0.1/osa-base/bin
-   ```
-2. Start OSA:
-   ```
-   ./start-osa.sh
-   ```
-3. Stop OSA:
-   ```
-   ./stop-osa.sh
    ```
 
 ## Setting up VNC Server
@@ -251,7 +225,7 @@ These steps should be performed on the Oracle Linux VM.
    sudo systemctl restart vncserver@\:1.service
    ```
 
-## Accessing OSA with VNC Viewer
+## Setting up VNC Viewer
 1. Install VNC Viewer on the local machine from [this link](https://www.realvnc.com/en/connect/download/viewer/).
 2. Connect to the VNC Server on the Oracle Linux VM (still using port 5901 as an example):
    ```
@@ -269,14 +243,84 @@ These steps should be performed on the Oracle Linux VM.
    ps aux | grep ssh
    ```
 
+## Starting the OSA environment
+These actions should be performed from the /home/opc directory.
+1. Connect to the Oracel Linux VM using VNC viewer (change port 5901 if needed):
+   ```
+   ssh -i ~/.ssh/osaVM.txt -L 5901:localhost:5901 opc@<vm_public_ip_address> -N &
+   ```
+2. Open terminal, and navigate to the /home/opc directory:
+   ```
+   cd /home/opc
+   ```
+1. Start the Zookeeper server:
+   ```
+   kafka/kafka_2.12-2.3.0/bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+   ```
+2. Start the Kafka server:
+   ```
+   kafka/kafka_2.12-2.3.0/bin/kafka-server-start.sh config/server.properties
+   ```
+3. Start the Spark Master:
+   ```
+   spark/spark-2.2.1-bin-hadoop2.7/sbin/start-master.sh
+   ```
+4. On the VM's browser, navigate to localhost:8080 and copy the Spark Master route that follows "spark://"
+5. Start the Spark Slave passing the Spark Master route as a parameter:
+   ```
+   spark/spark-2.2.1-bin-hadoop2.7/sbin/start-slave.sh <spark_master_url>
+   ```
+6. If starting OSA for the first time, start OSA with initialization steps.  The script will create a default admin user for OSA called osaadmin, and it will create metadata tables in the designated database.  The initialization will provide a prompt to set the password for the default OSA user:
+   ```
+   osa/OSA-18.1.0.0.1/osa-base/bin/start-osa.sh dbroot=<DB_root_user> dbroot_password=<DB_root_password>
+   ```
+7. If OSA has already been started with initialization steps, start OSA normally:
+   ```
+   osa/OSA-18.1.0.0.1/osa-base/bin/start-osa.sh
+   ```
+8. After starting OSA, the user interface will be accessible via this address:
+   ```
+   <vm_public_ip_address>:9080/osa
+   ```
+
+## Stopping the OSA environment
+1. Stop OSA:
+   ```
+   osa/OSA-18.1.0.0.1/osa-base/bin/stop-osa.sh
+   ```
+2. Stop the Spark Master:
+   ```
+   spark/spark-2.2.1-bin-hadoop2.7/sbin/stop-master.sh
+   ```
+3. Stop the Spark Slave:
+   ```
+   spark/spark-2.2.1-bin-hadoop2.7/sbin/stop-slave.sh <spark_master_url>
+   ```
+4. Stop the Kafka server:
+   ```
+   kafka/kafka_2.12-2.3.0/bin/kafka-server-stop.sh
+   ```
+5. Stop the Zookeeper server:
+   ```
+   kafka/kafka_2.12-2.3.0/bin/zookeeper-server-stop.sh
+   ```
+6. Close the VNC Viewer window.
+7. Close the VNC connection in the local machine's terminal, using the process ID given as output from the initial VNC connection command:
+   ```
+   Kill -9 <process_ID>
+   ```
+8. Verify the disconnection by checking the machine's list of ssh connections:
+   ```
+   ps aux | grep ssh
+   ```
+
 ## Post-Installation Configuration
-Upon accessing OSA via a web browser, there are some configuration parameters that need to be set:
+After completing the OSA startup process and accessing OSA via the web browser on VNC Viewer, there are some configuration parameters that need to be set:
    * Click on the user icon in the top right corner of the screen and select system settings
      ![image](https://user-images.githubusercontent.com/42782692/61556929-c2c26400-aa17-11e9-8e70-0b66967c7a96.png)
    * Set the Kafka ZooKeeper Connection to "localhost:2181"
    * Set the Runtime Server to "Spark Standalone"
-   * Go to <vm_public_ip_address>:8080 on a web browser (or localhost:8080 from inside the VM) and copy the Spark Master route that follows "spark://"
-   * Enter the Spark Master route into the Spark REST URL parameter in OSA's system settings.
+   * Enter the Spark Master route (found at localhost:8080 on the VM) into the Spark REST URL parameter in OSA's system settings.
    * Select the NFS storage option, and set the path to "tmp/spark-deploy"
    * Click save
 
