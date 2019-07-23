@@ -187,7 +187,7 @@ These steps should be performed on the Oracle Linux VM.
    ```
    sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@\:1.service
    ```
-4. Open the config file for editing and replace all "<USER>" values with the Oracle Linux VM’s username:
+4. Open the config file for editing and replace all `<USER>` values with the Oracle Linux VM’s username:
    ```
    sudo vim /etc/systemd/system/vncserver@\:1.service
    ```
