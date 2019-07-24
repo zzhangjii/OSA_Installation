@@ -8,18 +8,52 @@
 opc_path=(/home/opc)
 component_scripts=$PWD/../component-scripts
 
-$component_scripts/make-directories.sh
-$component_scripts/extract-dependencies.sh
+if $component_scripts/make-directories.sh ;
+then
+    echo "Directories created."
+else
+    exit 1
+
+if $component_scripts/extract-dependencies.sh ;
+then
+    echo "Dependencies extracted."
+else
+    exit 1
+
 echo "Setting environment variables..."
-sudo $component_scripts/set-environment-variables.sh
+if sudo $component_scripts/set-environment-variables.sh ;
+then
+    echo "Environment variables set."
+else
+    exit 1
+
 echo "Installing JDK..."
-$component_scripts/install-jdk.sh
+if $component_scripts/install-jdk.sh ;
+then
+    echo "JDK installed."
+else
+    exit 1
+
 echo "Configuring Spark..."
-$component_scripts/config-spark.sh
+if $component_scripts/config-spark.sh ;
+then
+    echo "Spark configured."
+else
+    exit 1
+
 echo "Configuring OSA..."
-$component_scripts/config-osa.sh
+if $component_scripts/config-osa.sh ;
+then
+    echo "OSA configured."
+else
+    exit 1
+
 echo "Installing VNC..."
-$component_scripts/install-vnc.sh
+if $component_scripts/install-vnc.sh ;
+then
+    echo "VNC installed."
+else
+    exit 1
 
 # Requests reboot
 echo "Configuration complete.\nPlease close your SSH connection, reconnect, then run \"master-initialize.sh\" to complete the installation process."
