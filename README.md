@@ -1,5 +1,10 @@
 # OSA Installation
-This document provides step by step instructions to install Oracle Stream Analytics (OSA) on an Oracle Linux VM.  All of these steps except for VNC viewer should be performed on the Oracle Linux Virtual Machine.
+This document provides instructions for using shell scripts to install Oracle Stream Analytics (OSA) on an Oracle Linux VM, as well as a step-by-step breakdown for how to install OSA manually.  
+
+## Shell Script Installation
+
+## Manual Installation
+All of these steps except for setting up VNC Viewer should be performed on the Oracle Linux Virtual Machine.
 
 These steps will cover:
 * File structure
@@ -14,7 +19,7 @@ These steps will cover:
 * Post-Installation Configuration
 * References
 
-## Prerequisites
+### Prerequisites
 * Virtual Machine running Oracle Linux 7.6 with SSH access.
   * Provision a virtual machine with Oracle Linux 7.6 and set up SSH keys for remote access. These instructions are based on running the VM on an Oracle Cloud Infrastructure Compute Instance.
 * Oracle Database 19.1 Multitenant
@@ -23,7 +28,7 @@ These steps will cover:
 * Zookeeper
 * Oracle Golden Gate Big Data
 
-## File Structure
+### File Structure
 In the /home/opc directory of the Oracle Linux VM Create these three directories:
 1. java
    ```
@@ -42,7 +47,7 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    mkdir osa
    ```
 
-## Installing Java Developer Kit
+### Installing Java Developer Kit
 1. Download the Java Development Kit version 8, update 131 (jdk-8u131-linux-x64.tar.gz) from [this link](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html).
 2. Copy the downloaded tar file to the java folder on the Linux VM:
    ```
@@ -79,7 +84,7 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    java -version
    ```
 
-## Installing Apache Kafka
+### Installing Apache Kafka
 1. Navigate to the kafka directory:
    ```
    cd kafka
@@ -93,7 +98,7 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    tar zxvf kafka_2.12-2.3.0.tg
    ```
 
-## Installing Apache Spark
+### Installing Apache Spark
 1. Download Spark 2.2.1 for Hadoop 2.7 (spark-2.2.1-bin-hadoop2.7.tgz) from [this link](https://archive.apache.org/dist/spark/spark-2.2.1/).
 2. Copy the downloaded tar file to the spark folder on the Linux VM:
    ```
@@ -124,7 +129,7 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ```
 8. The rest of the Spark configuration will be done in OSA configuration files and in later steps, so move on to 'Installing and Configuring OSA.'
 
-## Installing and configuring OSA
+### Installing and configuring OSA
 1. Download Oracle Stream Analytics 18.1.0.0.1 (V978767-01.zip) from [this link](https://www.oracle.com/middleware/technologies/stream-analytics/downloads.html#).
 2. Copy the downloaded tar file to the osa folder on the Linux VM:
    ```
@@ -173,7 +178,7 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    </New>
    ```
 
-## Setting up VNC Server
+### Setting up VNC Server
 These steps should be performed on the Oracle Linux VM.
 1. Begin installation process:
    ```
@@ -225,7 +230,7 @@ These steps should be performed on the Oracle Linux VM.
    sudo systemctl restart vncserver@\:1.service
    ```
 
-## Setting up VNC Viewer
+### Setting up VNC Viewer
 1. Install VNC Viewer on the local machine from [this link](https://www.realvnc.com/en/connect/download/viewer/).
 2. Connect to the VNC Server on the Oracle Linux VM (still using port 5901 as an example):
    ```
@@ -243,7 +248,7 @@ These steps should be performed on the Oracle Linux VM.
    ps aux | grep ssh
    ```
 
-## Starting the OSA environment
+### Starting the OSA environment
 These actions should be performed from the /home/opc directory.
 1. Connect to the Oracel Linux VM using VNC viewer (change port 5901 if needed):
    ```
@@ -283,7 +288,7 @@ These actions should be performed from the /home/opc directory.
    <vm_public_ip_address>:9080/osa
    ```
 
-## Stopping the OSA environment
+### Stopping the OSA environment
 1. Stop OSA:
    ```
    osa/OSA-18.1.0.0.1/osa-base/bin/stop-osa.sh
@@ -314,7 +319,7 @@ These actions should be performed from the /home/opc directory.
    ps aux | grep ssh
    ```
 
-## Post-Installation Configuration
+### Post-Installation Configuration
 After completing the OSA startup process and accessing OSA via the web browser on VNC Viewer, there are some configuration parameters that need to be set:
    * Click on the user icon in the top right corner of the screen and select system settings
      ![image](https://user-images.githubusercontent.com/42782692/61556929-c2c26400-aa17-11e9-8e70-0b66967c7a96.png)
@@ -322,9 +327,10 @@ After completing the OSA startup process and accessing OSA via the web browser o
    * Set the Runtime Server to "Spark Standalone"
    * Enter the Spark Master route (found at localhost:8080 on the VM) into the Spark REST URL parameter in OSA's system settings.
    * Select the NFS storage option, and set the path to "tmp/spark-deploy"
+   * The resources allocated to OSA can be configured in the "Pipelines" tab of the settings window.
    * Click save
 
-## References
+### References
 * [Official OSA Installation Documentation](https://docs.oracle.com/en/middleware/fusion-middleware/osa/18.1/install-stream-analytics/how-install-oracle-stream-analytics.html#GUID-13BC895D-6AD1-4398-98E2-B5BE5B14D26B)
 * [Initializing Metadata Store](https://docs.oracle.com/en/middleware/fusion-middleware/osa/18.1/install-stream-analytics/initializing-metadata-store.html)
 * [Configuring a VNC Server](https://docs.oracle.com/cd/E52668_01/E54669/html/ol7-vnc-config.html)
