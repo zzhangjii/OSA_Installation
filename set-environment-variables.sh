@@ -5,7 +5,7 @@
 opc_path=($PWD)
 # opc_path=(/home/opc)
 #environment_path=(/etc/environment)
-environment_path=($opc_path/test)
+environment_path=($opc_path/environment)
 java_home=($opc_path/java/jdk1.8.0_131)
 jdk_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/opc/java/jdk1.8.0_131/bin"
 
