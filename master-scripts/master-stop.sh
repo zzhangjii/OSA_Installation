@@ -26,4 +26,6 @@ $opc_path/kafka/kafka_2.12-2.3.0/bin/kafka-server-stop.sh
 echo "Stopping Zookeeper server..."
 $opc_path/kafka/kafka_2.12-2.3.0/bin/zookeeper-server-stop.sh
 
-echo "Shutdown complete. Close the VNC connection from your local machine to fully disconnect:\nKill -9 <process_ID>"
+echo "Shutdown complete."
+echo "Close the VNC connection from your local machine to fully disconnect:"
+echo "Kill -9 <process_ID>"
