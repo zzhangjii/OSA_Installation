@@ -22,15 +22,15 @@ then
         then
             echo "Appending PATH..."
             # Remove all " from PATH
-            sed -i "/^PATH/s/\"//g" environment_path
+            sed -i "/^PATH/s/\"//g" $environment_path
             # Insert first " back into PATH
-            sed -i "/^PATH/s/PATH=/PATH=\"/" environment_path
+            sed -i "/^PATH/s/PATH=/PATH=\"/" $environment_path
             # Remove $PATH from PATH
-            sed -i "/^PATH/s/\$PATH//" environment_path
+            sed -i "/^PATH/s/\$PATH//" $environment_path
             # Remove last character if it's :
-            sed -i "s/:$//" environment_path
+            sed -i "s/:$//" $environment_path
             # Add new PATH variables with leading :
-            sed -i "/^PATH/ s,$,:$jdk_path\":\$PATH," environment_path
+            sed -i "/^PATH/ s,$,:$jdk_path\":\$PATH," $environment_path
 
         else
             $opc_path/cleanup-osa.sh -y
@@ -39,7 +39,7 @@ then
     else
         # PATH not found
         echo "Writing PATH..."
-        sed -i "1 i\PATH=\"$jdk_path\":\$PATH" environment_path
+        sed -i "1 i\PATH=\"$jdk_path\":\$PATH" $environment_path
     fi
 
     if grep -q "JAVA_HOME" $environment_path;
@@ -50,7 +50,7 @@ then
         if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
         then
             echo "Changing JAVA_HOME..."
-            sed -i "/JAVA_HOME/c\JAVA_HOME=\"$java_home\"" environment_path
+            sed -i "/JAVA_HOME/c\JAVA_HOME=\"$java_home\"" $environment_path
         else
             $opc_path/cleanup-osa.sh -y
             exit 1
@@ -58,12 +58,12 @@ then
     else
         # JAVA_HOME not found
         echo "Writing JAVA_HOME..."
-        sed -i -e "\$aJAVA_HOME=\"$java_home\"" environment_path
+        sed -i -e "\$aJAVA_HOME=\"$java_home\"" $environment_path
     fi
 
 else
     # File empty
     echo "Writing PATH and JAVA_HOME..."
-    sed -i -e "\$aPATH=\"$jdk_path\":\$PATH\nJAVA_HOME=\"$java_home\"" environment_path
+    sed -i -e "\$aPATH=\"$jdk_path\":\$PATH\nJAVA_HOME=\"$java_home\"" $environment_path
     
 fi
