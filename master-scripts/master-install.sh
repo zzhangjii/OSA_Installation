@@ -19,6 +19,7 @@ if $component_scripts/extract-dependencies.sh ;
 then
     echo "Dependencies extracted."
 else
+    $component_scripts/remove-directories.sh
     exit 1
 fi
 
