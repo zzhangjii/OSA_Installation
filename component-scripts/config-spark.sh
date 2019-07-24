@@ -5,6 +5,7 @@
 #opc_path=($PWD)
 opc_path=(/home/opc)
 osa_spark_home=($opc_path/spark/spark-2.2.1-bin-hadoop2.7)
+spark_env=($opc_path/spark/spark-2.2.1-bin-hadoop2.7/conf/spark-env.sh)
 
 # Configure Apache Spark
 cp $osa_spark_home/conf/spark-env.sh.template $spark_env
