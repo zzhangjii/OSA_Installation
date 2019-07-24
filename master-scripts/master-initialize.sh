@@ -4,6 +4,7 @@
 
 #opc_path=($PWD)
 opc_path=(/home/opc)
+master_scripts=$PWD/master-scripts
 
 # Start Zookeeper server
 echo "Starting Zookeeper server..."
@@ -29,6 +30,6 @@ read -s -p "Enter DB root password: "  db_root_password
 $opc_path/osa/OSA-18.1.0.0.1/osa-base/bin/start-osa.sh dbroot=$db_root_user dbroot_password=$db_root_password
 
 # Shutdown OSA
-$opc_path/master-scripts/master-stop.sh
+$master_scripts/master-stop.sh
 
 echo "OSA is fully installed and initialized.\nTo start and stop OSA, run \"master-start.sh\" and \"master-stop.sh\""
