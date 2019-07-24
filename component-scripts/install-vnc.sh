@@ -2,6 +2,12 @@
 # Oracle Stream Analytics Installation Scripts for Oracle Linux 7.6
 # Created by Paul Chyz on 7/19/2019
 
+if [ `whoami` = root ];
+then
+    echo "This should not be run as root, please try again without using sudo."
+    exit 1
+fi
+
 if rpm -qa | grep tigervnc-server ;
 then
     echo "VNC Server is already on this system"
