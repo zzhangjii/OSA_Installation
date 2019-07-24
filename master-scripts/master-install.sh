@@ -6,7 +6,7 @@
 
 #opc_path=($PWD)
 opc_path=(/home/opc)
-component_scripts=$PWD/component-scripts
+component_scripts=$PWD/../component-scripts
 
 $component_scripts/make-directories.sh
 $component_scripts/extract-dependencies.sh

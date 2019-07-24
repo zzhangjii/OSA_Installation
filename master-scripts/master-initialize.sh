@@ -4,7 +4,7 @@
 
 #opc_path=($PWD)
 opc_path=(/home/opc)
-master_scripts=$PWD/master-scripts
+master_scripts=$PWD
 
 # Start Zookeeper server
 echo "Starting Zookeeper server..."
