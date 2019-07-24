@@ -31,8 +31,8 @@ else
     # Configure firewall
     echo "Adding service..."
     sudo firewall-cmd --zone=public --add-service=vnc-server
-    sudo firewall-cmd --zone=public --add-service=vnc-server –permanent
+    sudo firewall-cmd --zone=public --add-service=vnc-server --permanent
     echo "Adding port..."
     sudo firewall-cmd --zone=public --add-port=$port/tcp
-    sudo firewall-cmd --zone=public --add-port=$port/tcp –permanent
+    sudo firewall-cmd --zone=public --add-port=$port/tcp --permanent
 fi
