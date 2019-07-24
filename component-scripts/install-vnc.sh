@@ -16,7 +16,7 @@ else
 
     # Copy template config file and replace values with Oracle Linux VM username
     sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@\:$display_number.service
-    sed -i "s/<USER>/$vnc_user/g" vncserver@\:$display_number.service
+    sed -i "s/<USER>/$vnc_user/g" /etc/systemd/system/vncserver@\:$display_number.service
 
     # Reload, start, and enable VNC Server
     sudo systemctl daemon-reload
