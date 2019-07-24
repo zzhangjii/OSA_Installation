@@ -2,8 +2,8 @@
 # Oracle Stream Analytics Installation Scripts for Oracle Linux 7.6
 # Created by Paul Chyz on 7/19/2019
 
-opc_path=($PWD)
-# opc_path=(/home/opc)
+#opc_path=($PWD)
+opc_path=(/home/opc)
 
 # Stop OSA
 echo "Stopping OSA..."

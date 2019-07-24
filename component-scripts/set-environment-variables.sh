@@ -2,10 +2,10 @@
 # Oracle Stream Analytics Installation Scripts for Oracle Linux 7.6
 # Created by Paul Chyz on 7/19/2019
 
-opc_path=($PWD)
-# opc_path=(/home/opc)
-#environment_path=(/etc/environment)
-environment_path=($opc_path/environment)
+#opc_path=($PWD)
+opc_path=(/home/opc)
+environment_path=(/etc/environment)
+#environment_path=($opc_path/environment)
 java_home=($opc_path/java/jdk1.8.0_131)
 jdk_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/opc/java/jdk1.8.0_131/bin"
 

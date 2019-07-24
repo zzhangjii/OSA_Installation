@@ -4,21 +4,22 @@
 
 # Will need to exit ssh and reconnect to complete install
 
-opc_path=($PWD)
-# opc_path=(/home/opc)
+#opc_path=($PWD)
+opc_path=(/home/opc)
+component_scripts=$opc_path/component-scripts
 
-$opc_path/make-directories.sh
-$opc_path/extract-dependencies.sh
+$component_scripts/make-directories.sh
+$component_scripts/extract-dependencies.sh
 echo "Setting environment variables..."
-$opc_path/set-environment-variables.sh
+sudo $component_scripts/set-environment-variables.sh
 echo "Installing JDK..."
-$opc_path/install-jdk.sh
+$component_scripts/install-jdk.sh
 echo "Configuring Spark..."
-$opc_path/config-spark.sh
+$component_scripts/config-spark.sh
 echo "Configuring OSA..."
-$opc_path/config-osa.sh
+$component_scripts/config-osa.sh
 echo "Installing VNC..."
-$opc_path/install-vnc.sh
+$component_scripts/install-vnc.sh
 
-# ** Reboot **
+# Requests reboot
 echo "Configuration complete.\nPlease close your SSH connection, reconnect, then run \"master-initialize.sh\" to complete the installation process."

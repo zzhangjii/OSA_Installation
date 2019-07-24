@@ -2,8 +2,8 @@
 # Oracle Stream Analytics Installation Scripts for Oracle Linux 7.6
 # Created by Paul Chyz on 7/19/2019
 
-opc_path=($PWD)
-# opc_path=(/home/opc)
+#opc_path=($PWD)
+opc_path=(/home/opc)
 osa_etc=($opc_path/osa/OSA-18.1.0.0.1/osa-base/etc)
 osa_spark_home=($opc_path/spark/spark-2.2.1-bin-hadoop2.7)
 osa_java_home=($opc_path/java/jdk1.8.0_131)

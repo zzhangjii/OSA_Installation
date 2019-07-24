@@ -2,10 +2,6 @@
 # Oracle Stream Analytics Installation Scripts for Oracle Linux 7.6
 # Created by Paul Chyz on 7/19/2019
 
-#display_number=1
-#port=5901
-#vnc_user=opc
-
 if rpm -qa | grep tigervnc-server ;
 then
     echo "VNC Server is already on this system"
