@@ -32,4 +32,5 @@ $opc_path/osa/OSA-18.1.0.0.1/osa-base/bin/start-osa.sh dbroot=$db_root_user dbro
 # Shutdown OSA
 $master_scripts/master-stop.sh
 
-echo "OSA is fully installed and initialized.\nTo start and stop OSA, run \"master-start.sh\" and \"master-stop.sh\""
+echo "OSA is fully installed and initialized."
+echo "To start and stop OSA, run \"master-start.sh\" and \"master-stop.sh\""

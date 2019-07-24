@@ -64,4 +64,5 @@ else
 fi
 
 # Requests reboot
-echo "Configuration complete.\nPlease close your SSH connection, reconnect, then run \"master-initialize.sh\" to complete the installation process."
+echo "Configuration complete."
+echo "Please close your SSH connection, reconnect, then run \"master-initialize.sh\" to complete the installation process."
