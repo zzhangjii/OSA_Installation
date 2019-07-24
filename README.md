@@ -288,13 +288,13 @@ These actions should be performed from the /home/opc directory.
    ```
    osa/OSA-18.1.0.0.1/osa-base/bin/stop-osa.sh
    ```
-2. Stop the Spark Master:
-   ```
-   spark/spark-2.2.1-bin-hadoop2.7/sbin/stop-master.sh
-   ```
-3. Stop the Spark Slave:
+2. Stop the Spark Slave:
    ```
    spark/spark-2.2.1-bin-hadoop2.7/sbin/stop-slave.sh <spark_master_url>
+   ```
+3. Stop the Spark Master:
+   ```
+   spark/spark-2.2.1-bin-hadoop2.7/sbin/stop-master.sh
    ```
 4. Stop the Kafka server:
    ```
