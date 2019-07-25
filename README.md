@@ -26,7 +26,7 @@ Follow these steps to install OSA on Oracle Linux 7.6 using the included shell s
    ```
    scp -i <private_key_path> jdk-8u131-linux-x64.tar.gz opc@<vm_ip_address>:/home/opc/OSA_Installation/dependencies/jdk-8u131-linux-x64.tar.gz
    ```
-5. On your local machine, get the mirror link for the Kafka 2.3.0 binary for Scala 2.12 from [this link](https://kafka.apache.org/downloads) and run the "wget" command from the `OSA_Installation/dependencies` directory of the Oracle Linux VM to download Kafka:
+5. On your local machine, get the mirror link for the Kafka 2.3.0 binary for Scala 2.12 from [this link](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.3.0/kafka_2.12-2.3.0.tgz) and run the `wget` command from the `OSA_Installation/dependencies` directory of the Oracle Linux VM to download Kafka:
    ```
    cd dependencies
    ```
