@@ -7,11 +7,11 @@ opc_path=(/home/opc)
 
 # Start Zookeeper server
 echo "Starting Zookeeper server..."
-$opc_path/kafka/kafka_2.12-2.3.0/bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+$opc_path/kafka/kafka_2.12-2.3.0/bin/zookeeper-server-start.sh -daemon $opc_path/kafka/kafka_2.12-2.3.0/config/zookeeper.properties
 
 # Start Kafka server
 echo "Starting Kafka server..."
-$opc_path/kafka/kafka_2.12-2.3.0/bin/kafka-server-start.sh config/server.properties
+$opc_path/kafka/kafka_2.12-2.3.0/bin/kafka-server-start.sh $opc_path/kafka/kafka_2.12-2.3.0/config/server.properties
 
 # Start Spark master
 echo "Starting Spark master..."
