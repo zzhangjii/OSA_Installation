@@ -188,7 +188,7 @@ In the /home/opc directory of the Oracle Linux VM Create these three directories
    ```
 8. The rest of the Spark configuration will be done in OSA configuration files and in later steps, so move on to 'Installing and Configuring OSA.'
 
-### Installing and configuring OSA
+### Installing and Configuring OSA
 1. Download Oracle Stream Analytics 18.1.0.0.1 (V978767-01.zip) from [this link](https://www.oracle.com/middleware/technologies/stream-analytics/downloads.html#).
 2. Copy the downloaded tar file to the osa folder on the Linux VM:
    ```
@@ -307,7 +307,7 @@ These steps should be performed on the Oracle Linux VM.
    ps aux | grep ssh
    ```
 
-### Starting the OSA environment
+### Starting the OSA Environment
 These actions should be performed from the /home/opc directory.
 1. Connect to the Oracel Linux VM using VNC viewer (change port 5901 if needed):
    ```
@@ -344,7 +344,7 @@ These actions should be performed from the /home/opc directory.
    ```
 8. After starting OSA, the user interface will be accessible on the VM's browser via `localhost:9080/osa` or from another machine's browser via `<vm_public_ip_address>:9080/osa` if the networking has been set up to allow outside traffic.
 
-### Stopping the OSA environment
+### Stopping the OSA Environment
 1. Stop OSA:
    ```
    osa/OSA-18.1.0.0.1/osa-base/bin/stop-osa.sh
