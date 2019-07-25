@@ -18,6 +18,7 @@ else
     read -p "Enter VNC user: " vnc_user
 
     sudo yum install tigervnc-server
+    echo "Set the password for accessing VNC Server: "
     vncpasswd
 
     # Copy template config file and replace values with Oracle Linux VM username
