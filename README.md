@@ -55,7 +55,7 @@ Follow these steps to install OSA on Oracle Linux 7.6 using the included shell s
    ```
    exit
    ```
-4. On your local machine, [set up VNC Viewer](###-Setting-up-VNC-Viewer) with a connection to the VM.
+4. On your local machine, [set up VNC Viewer](#setting-up-vnc-viewer) with a connection to the VM.
 5. Run the master initialize script and follow the prompts throughout the process:
    ```
    ./master-initialize.sh
@@ -65,7 +65,7 @@ Follow these steps to install OSA on Oracle Linux 7.6 using the included shell s
    ./master-start.sh
    ```
 7. OSA is now accessible on the VM's browser via `localhost:9080/osa` or from another machine's browser via `<vm_public_ip_address>:9080/osa` if the networking has been set up to allow outside traffic.
-8. Access OSA's browser interface, and complete the [post-installation configuration](###-Post-Installation-Configuration)
+8. Access OSA's browser interface, and complete the [post-installation configuration](#post-installation-configuration)
 9. To stop OSA, run the master stop script and follow the prompts throughout the process:
    ```
    ./master-stop.sh
@@ -75,17 +75,17 @@ Follow these steps to install OSA on Oracle Linux 7.6 using the included shell s
 All of these steps except for setting up VNC Viewer should be performed on the Oracle Linux Virtual Machine. Before beginning, ensure that you have satisfied the prerequisites listed above.
 
 These steps will cover:
-* [File structure](###-File-Structure)
-* [Installing Java Developer Kit](###-Installing-Java-Developer-Kit)
-* [Installing Apache Kafka](###-Installing-Apache-Kafka)
-* [Installing Apache Spark](###-Installing-Apache-Spark)
-* [Installing and configuring OSA](###-Installing-and-configuring-OSA)
-* [Setting up VNC Server](###-Setting-up-VNC-Server)
-* [Setting up VNC Viewer](###-Setting-up-VNC-Viewer)
-* [Starting the OSA environment](###-Starting-the-OSA-environment)
-* [Stopping the OSA environment](###-Stopping-the-OSA-environment)
-* [Post-installation configuration](###-Post-Installation-Configuration)
-* [References](###-References)
+* [File structure](#file-structure)
+* [Installing Java Developer Kit](#installing-java-developer-kit)
+* [Installing Apache Kafka](#installing-apache-kafka)
+* [Installing Apache Spark](#installing-apache-spark)
+* [Installing and configuring OSA](#installing-and-configuring-osa)
+* [Setting up VNC Server](#setting-up-vnc-server)
+* [Setting up VNC Viewer](#setting-up-vnc-viewer)
+* [Starting the OSA environment](#starting-the-osa-environment)
+* [Stopping the OSA environment](#stopping-the-osa-environment)
+* [Post-installation configuration](#post-installation-configuration)
+* [References](#references)
 
 ### File Structure
 In the /home/opc directory of the Oracle Linux VM Create these three directories:
