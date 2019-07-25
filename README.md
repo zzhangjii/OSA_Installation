@@ -22,22 +22,22 @@ Follow these steps to install OSA on Oracle Linux 7.6 using the included shell s
    ```
    git clone https://github.com/paulchyz/OSA_Installation.git
    ```
-4. Download the Java Developer Kit version 8, update 131 (jdk-8u131-linux-x64.tar.gz) from [this link](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) and copy it to the "dependencies" directory:
+4. Download the Java Developer Kit version 8, update 131 (jdk-8u131-linux-x64.tar.gz) from [this link](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) and copy it to the `OSA_Installation/dependencies` directory:
    ```
    scp -i <private_key_path> jdk-8u131-linux-x64.tar.gz opc@<vm_ip_address>:/home/opc/OSA_Installation/dependencies/jdk-8u131-linux-x64.tar.gz
    ```
-5. Get the mirror link for the Kafka 2.3.0 binary for Scala 2.12 from [this link](https://kafka.apache.org/downloads) and run the "wget" command from the "dependencies" directory of the Oracle Linux VM to download Kafka:
+5. Get the mirror link for the Kafka 2.3.0 binary for Scala 2.12 from [this link](https://kafka.apache.org/downloads) and run the "wget" command from the `OSA_Installation/dependencies` directory of the Oracle Linux VM to download Kafka:
    ```
    cd dependencies
    ```
    ```
    wget <kafka_binary_mirror_link>
    ```
-6. Download Spark 2.2.1 for Hadoop 2.7 (spark-2.2.1-bin-hadoop2.7.tgz) from [this link](https://archive.apache.org/dist/spark/spark-2.2.1/) and copy it to the "dependencies" directory:
+6. Download Spark 2.2.1 for Hadoop 2.7 (spark-2.2.1-bin-hadoop2.7.tgz) from [this link](https://archive.apache.org/dist/spark/spark-2.2.1/) and copy it to the `OSA_Installation/dependencies` directory:
    ```
    scp -i <private_key_path> spark-2.2.1-bin-hadoop2.7.tgz opc@<vm_ip_address>:/home/opc/OSA_Installation/dependencies/spark-2.2.1-bin-hadoop2.7.tgz
    ```
-7. Download Oracle Stream Analytics 18.1.0.0.1 (V978767-01.zip) from [this link](https://www.oracle.com/middleware/technologies/stream-analytics/downloads.html#) and copy it to the "dependencies" directory:
+7. Download Oracle Stream Analytics 18.1.0.0.1 (V978767-01.zip) from [this link](https://www.oracle.com/middleware/technologies/stream-analytics/downloads.html#) and copy it to the `OSA_Installation/dependencies` directory:
    ```
    scp -i <private_key_path> V978767-01.zip opc@<vm_ip_address>:/home/opc/OSA_Installation/dependencies/V978767-01.zip
    ```
