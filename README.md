@@ -297,7 +297,7 @@ These steps should be performed on the Oracle Linux VM.
 1. Install VNC Viewer on the local machine from [this link](https://www.realvnc.com/en/connect/download/viewer/).
 2. Connect to the VNC Server on the Oracle Linux VM (still using port 5901 as an example):
    ```
-   ssh -i ~/.ssh/osaVM.txt -L 5901:localhost:5901 opc@<vm_public_ip_address> -N &
+   ssh -i <private_key_path> -L 5901:localhost:5901 opc@<vm_public_ip_address> -N &
    ```
 3. Open VNC Viewer, click on "File," then click "New Connection."
 4. In the VNC Server parameter, enter localhost:<vnc_server_port> and give the connection a name. 
@@ -315,7 +315,7 @@ These steps should be performed on the Oracle Linux VM.
 These actions should be performed from the /home/opc directory.
 1. Connect to the Oracel Linux VM using VNC viewer (change port 5901 if needed):
    ```
-   ssh -i ~/.ssh/osaVM.txt -L 5901:localhost:5901 opc@<vm_public_ip_address> -N &
+   ssh -i <private_key_path> -L 5901:localhost:5901 opc@<vm_public_ip_address> -N &
    ```
 2. Open terminal, and navigate to the /home/opc directory:
    ```
