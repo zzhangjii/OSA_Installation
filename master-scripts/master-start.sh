@@ -11,7 +11,7 @@ $opc_path/kafka/kafka_2.12-2.3.0/bin/zookeeper-server-start.sh -daemon $opc_path
 
 # Start Kafka server
 echo "Starting Kafka server..."
-$opc_path/kafka/kafka_2.12-2.3.0/bin/kafka-server-start.sh -daemon $opc_path/kafka/kafka_2.12-2.3.0/config/server.properties &
+$opc_path/kafka/kafka_2.12-2.3.0/bin/kafka-server-start.sh -daemon $opc_path/kafka/kafka_2.12-2.3.0/config/server.properties -> kafkalog.txt
 
 # Start Spark master
 echo "Starting Spark master..."
