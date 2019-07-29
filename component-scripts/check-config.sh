@@ -11,7 +11,7 @@ then
     :
 else
     echo "Creating config file..."
-    printf "DB_IP=\nDB_PORT=\nDB_SERVICE_NAME=\nOSA_DB_USER=\nOSA_DB_PWD=\nVNC_DISPLAY_NUM=\nVNC_PORT=\nVNC_USER=" > $config_path
+    printf "DB_IP=\nDB_PORT=\nDB_SERVICE_NAME=\nOSA_DB_USER=\nVNC_DISPLAY_NUM=\nVNC_PORT=\nVNC_USER=" > $config_path
 fi
 
 source $config_path
@@ -33,7 +33,6 @@ checkNull DB_IP $DB_IP
 checkNull DB_PORT $DB_PORT
 checkNull DB_SERVICE_NAME $DB_SERVICE_NAME
 checkNull OSA_DB_USER $OSA_DB_USER
-checkNull OSA_DB_PWD $OSA_DB_PWD
 checkNull VNC_DISPLAY_NUM $VNC_DISPLAY_NUM
 checkNull VNC_PORT $VNC_PORT
 checkNull VNC_USER $VNC_USER

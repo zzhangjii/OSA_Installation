@@ -25,7 +25,7 @@ sed -i "/New id=/s/        //" $osa_etc/jetty-osa-datasource.xml
 # read -p "Enter DB port number: "  db_port
 # read -p "Enter service name: "  service_name
 # read -p "Enter OSA DB username: "  db_user
-# read -s -p "Enter OSA DB password: "  db_password
+read -s -p "Enter a password for the DB user $OSA_DB_USER: "  db_password
 
 # Configure DB parameters
 sed -i "/Set name=\"URL\"/s/myhost.example.com/$db_ip/" $osa_etc/jetty-osa-datasource.xml
