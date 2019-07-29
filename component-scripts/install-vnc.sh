@@ -29,7 +29,7 @@ then
     echo "VNC Server is already on this system"
     exit 1
 else
-    sudo yum install tigervnc-server
+    sudo yum install tigervnc-server -y
     echo "Set the password for accessing VNC Server: "
     vncpasswd
 
@@ -43,7 +43,7 @@ else
     sudo systemctl enable vncserver@\:$VNC_DISPLAY_NUM.service
 
     # Install desktop environment
-    sudo yum groupinstall "server with gui"
+    sudo yum groupinstall "server with gui" -y
     sudo systemctl set-default graphical.target
     sudo systemctl restart vncserver@\:$VNC_DISPLAY_NUM.service
 
