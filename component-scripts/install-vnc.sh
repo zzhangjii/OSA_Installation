@@ -34,24 +34,24 @@ else
     vncpasswd
 
     # Copy template config file and replace values with Oracle Linux VM username
-    sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@\:$display_number.service
-    sudo sed -i "s/<USER>/$vnc_user/g" /etc/systemd/system/vncserver@\:$display_number.service
+    sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@\:$VNC_DISPLAY_NUM.service
+    sudo sed -i "s/<USER>/$VNC_USER/g" /etc/systemd/system/vncserver@\:$VNC_DISPLAY_NUM.service
 
     # Reload, start, and enable VNC Server
     sudo systemctl daemon-reload
-    sudo systemctl start vncserver@\:$display_number.service
-    sudo systemctl enable vncserver@\:$display_number.service
+    sudo systemctl start vncserver@\:$VNC_DISPLAY_NUM.service
+    sudo systemctl enable vncserver@\:$VNC_DISPLAY_NUM.service
 
     # Install desktop environment
     sudo yum groupinstall "server with gui"
     sudo systemctl set-default graphical.target
-    sudo systemctl restart vncserver@\:$display_number.service
+    sudo systemctl restart vncserver@\:$VNC_DISPLAY_NUM.service
 
     # Configure firewall
     echo "Adding service..."
     sudo firewall-cmd --zone=public --add-service=vnc-server
     sudo firewall-cmd --zone=public --add-service=vnc-server --permanent
     echo "Adding port..."
-    sudo firewall-cmd --zone=public --add-port=$port/tcp
-    sudo firewall-cmd --zone=public --add-port=$port/tcp --permanent
+    sudo firewall-cmd --zone=public --add-port=$VNC_PORT/tcp
+    sudo firewall-cmd --zone=public --add-port=$VNC_PORT/tcp --permanent
 fi

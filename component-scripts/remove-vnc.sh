@@ -14,9 +14,9 @@ then
     read -p "Enter VNC port number: " VNC_PORT
 fi
 
-sudo firewall-cmd --zone=public --remove-port=$port/tcp --permanent
+sudo firewall-cmd --zone=public --remove-port=$VNC_PORT/tcp --permanent
 sudo firewall-cmd --zone=public --remove-service=vnc-server --permanent
 sudo yum groupremove "server with gui" "GNOME"
 sudo yum remove tigervnc-server
 sudo yum remove tigervnc-server-minimal
-sudo rm /etc/systemd/system/vncserver@\:$display_number.service
+sudo rm /etc/systemd/system/vncserver@\:$VNC_DISPLAY_NUM.service

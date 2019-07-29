@@ -41,9 +41,9 @@ fi
 read -s -p "Enter a password for the DB user $OSA_DB_USER: "  db_password
 
 # Configure DB parameters
-sed -i "/Set name=\"URL\"/s/myhost.example.com/$db_ip/" $osa_etc/jetty-osa-datasource.xml
-sed -i "/Set name=\"URL\"/s/1521/$db_port/" $osa_etc/jetty-osa-datasource.xml
-sed -i "/Set name=\"URL\"/ s|:OSADB|/$service_name|" $osa_etc/jetty-osa-datasource.xml
+sed -i "/Set name=\"URL\"/s/myhost.example.com/$DB_IP/" $osa_etc/jetty-osa-datasource.xml
+sed -i "/Set name=\"URL\"/s/1521/$DB_PORT/" $osa_etc/jetty-osa-datasource.xml
+sed -i "/Set name=\"URL\"/ s|:OSADB|/$DB_SERVICE_NAME|" $osa_etc/jetty-osa-datasource.xml
 
-sed -i "/Set name=\"User\"/s/{OSA_USER}/$db_user/" $osa_etc/jetty-osa-datasource.xml
+sed -i "/Set name=\"User\"/s/{OSA_USER}/$OSA_DB_USER/" $osa_etc/jetty-osa-datasource.xml
 sed -i "/Set name=\"Password\"/s/{OSA_USER_PWD}/$db_password/" $osa_etc/jetty-osa-datasource.xml
