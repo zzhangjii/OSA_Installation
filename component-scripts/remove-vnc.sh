@@ -2,8 +2,11 @@
 # Oracle Stream Analytics Installation Scripts for Oracle Linux 7.6
 # Created by Paul Chyz on 7/19/2019
 
-read -p "Enter display number: "  display_number
-read -p "Enter port number: "  port
+config_path=$PWD/../config.txt
+source $config_path
+
+# read -p "Enter display number: "  display_number
+# read -p "Enter port number: "  port
 
 sudo firewall-cmd --zone=public --remove-port=$port/tcp --permanent
 sudo firewall-cmd --zone=public --remove-service=vnc-server --permanent

@@ -7,6 +7,9 @@ opc_path=(/home/opc)
 osa_etc=($opc_path/osa/OSA-18.1.0.0.1/osa-base/etc)
 osa_spark_home=($opc_path/spark/spark-2.2.1-bin-hadoop2.7)
 osa_java_home=($opc_path/java/jdk1.8.0_131)
+config_path=$PWD/../config.txt
+
+source $config_path
 
 # Set SPARK_HOME and JAVA_HOME
 sed -i "/^SUPPORTED_JAVA_VERSION.*/a SPARK_HOME=\"$osa_spark_home\"\nJAVA_HOME=\"$osa_java_home\"" $osa_etc/osa-env.sh
@@ -18,11 +21,11 @@ sed -i '31d' $osa_etc/jetty-osa-datasource.xml
 sed -i "/New id=/s/        //" $osa_etc/jetty-osa-datasource.xml
 
 # Prompt for DB parameters
-read -p "Enter DB public IP: "  db_ip
-read -p "Enter DB port number: "  db_port
-read -p "Enter service name: "  service_name
-read -p "Enter OSA DB username: "  db_user
-read -s -p "Enter OSA DB password: "  db_password
+# read -p "Enter DB public IP: "  db_ip
+# read -p "Enter DB port number: "  db_port
+# read -p "Enter service name: "  service_name
+# read -p "Enter OSA DB username: "  db_user
+# read -s -p "Enter OSA DB password: "  db_password
 
 # Configure DB parameters
 sed -i "/Set name=\"URL\"/s/myhost.example.com/$db_ip/" $osa_etc/jetty-osa-datasource.xml

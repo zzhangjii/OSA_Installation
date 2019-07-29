@@ -2,6 +2,9 @@
 # Oracle Stream Analytics Installation Scripts for Oracle Linux 7.6
 # Created by Paul Chyz on 7/19/2019
 
+config_path=$PWD/../config.txt
+source $config_path
+
 if [ `whoami` = root ];
 then
     echo "This should not be run as root, please try again without using sudo."
@@ -13,9 +16,9 @@ then
     echo "VNC Server is already on this system"
     exit 1
 else
-    read -p "Enter display number: "  display_number
-    read -p "Enter port number: "  port
-    read -p "Enter VNC user: " vnc_user
+    # read -p "Enter display number: "  display_number
+    # read -p "Enter port number: "  port
+    # read -p "Enter VNC user: " vnc_user
 
     sudo yum install tigervnc-server
     echo "Set the password for accessing VNC Server: "

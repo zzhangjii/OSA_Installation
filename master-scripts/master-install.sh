@@ -8,6 +8,13 @@
 opc_path=(/home/opc)
 component_scripts=$PWD/../component-scripts
 
+if $component_scripts/check-config.sh ;
+then
+    echo "Beginning install process."
+else
+    exit 1
+fi
+
 if $component_scripts/make-directories.sh ;
 then
     echo "Directories created."
