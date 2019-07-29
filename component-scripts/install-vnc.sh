@@ -5,6 +5,19 @@
 config_path=$PWD/../config.txt
 source $config_path
 
+if [ -z "$VNC_DISPLAY_NUM" ]
+then
+    read -p "Enter VNC display number: " VNC_DISPLAY_NUM
+fi
+if [ -z "$VNC_PORT" ]
+then
+    read -p "Enter VNC port number: " VNC_PORT
+fi
+if [ -z "$VNC_USER" ]
+then
+    read -p "Enter VNC user: " VNC_USER
+fi
+
 if [ `whoami` = root ];
 then
     echo "This should not be run as root, please try again without using sudo."
@@ -16,10 +29,6 @@ then
     echo "VNC Server is already on this system"
     exit 1
 else
-    # read -p "Enter display number: "  display_number
-    # read -p "Enter port number: "  port
-    # read -p "Enter VNC user: " vnc_user
-
     sudo yum install tigervnc-server
     echo "Set the password for accessing VNC Server: "
     vncpasswd

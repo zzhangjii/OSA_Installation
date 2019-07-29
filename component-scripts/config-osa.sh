@@ -20,11 +20,24 @@ sed -i '10d' $osa_etc/jetty-osa-datasource.xml
 sed -i '31d' $osa_etc/jetty-osa-datasource.xml
 sed -i "/New id=/s/        //" $osa_etc/jetty-osa-datasource.xml
 
-# Prompt for DB parameters
-# read -p "Enter DB public IP: "  db_ip
-# read -p "Enter DB port number: "  db_port
-# read -p "Enter service name: "  service_name
-# read -p "Enter OSA DB username: "  db_user
+# Prompt for DB parameters if necessary
+if [ -z "$DB_IP" ]
+then
+    read -p "Enter DB public IP: " DB_IP
+fi
+if [ -z "$DB_PORT" ]
+then
+    read -p "Enter DB port number: " DB_PORT
+fi
+if [ -z "$DB_SERVICE_NAME" ]
+then
+    read -p "Enter DB service name: " DB_SERVICE_NAME
+fi
+if [ -z "$OSA_DB_USER" ]
+then
+    read -p "Enter OSA DB user: " OSA_DB_USER
+fi
+
 read -s -p "Enter a password for the DB user $OSA_DB_USER: "  db_password
 
 # Configure DB parameters

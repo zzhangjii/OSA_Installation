@@ -5,8 +5,14 @@
 config_path=$PWD/../config.txt
 source $config_path
 
-# read -p "Enter display number: "  display_number
-# read -p "Enter port number: "  port
+if [ -z "$VNC_DISPLAY_NUM" ]
+then
+    read -p "Enter VNC display number: " VNC_DISPLAY_NUM
+fi
+if [ -z "$VNC_PORT" ]
+then
+    read -p "Enter VNC port number: " VNC_PORT
+fi
 
 sudo firewall-cmd --zone=public --remove-port=$port/tcp --permanent
 sudo firewall-cmd --zone=public --remove-service=vnc-server --permanent
