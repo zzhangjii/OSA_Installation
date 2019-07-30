@@ -72,4 +72,4 @@ fi
 
 # Requests reboot
 echo "Configuration complete."
-echo "Please close your SSH connection, reconnect, then run \"master-initialize.sh\" to complete the installation process."
+echo "Please close your SSH connection, make sure VNC Viewer is set up on your local machine, then reconnect and run \"master-initialize.sh\" to complete the installation process."

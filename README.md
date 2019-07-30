@@ -41,6 +41,7 @@ Follow these steps to install OSA on Oracle Linux 7.6 using the included shell s
    ```
    scp -i <private_key_path> V978767-01.zip opc@<vm_ip_address>:/home/opc/OSA_Installation/dependencies/V978767-01.zip
    ```
+8. There is a config file in the `OSA_Installation` directory with the required parameters listed but not defined. The installation scripts will prompt for user input as needed to set these values, but this file can be edited manually or shared for pre-configured OSA installations on other systems.
 
 ### Installation
 1. Connect to the Oracle Linux VM via SSH:
