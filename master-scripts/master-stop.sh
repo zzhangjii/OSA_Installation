@@ -4,15 +4,40 @@
 
 #opc_path=($PWD)
 opc_path=(/home/opc)
+config_path=$PWD/../config.txt
+
+if grep -q "SPARK_MASTER" $environment_path;
+then
+    sed -i -e "\$aSPARK_MASTER=" $config_path
+fi
+
+source $config_path
 
 # Stop OSA
 echo "Stopping OSA..."
 $opc_path/osa/OSA-18.1.0.0.1/osa-base/bin/stop-osa.sh
 
+# Check or set the Spark master route
+if [ -z "$SPARK_MASTER" ]
+then
+    read -p "Get the Spark Master route from localhost:8080 on your VM's browser and enter it here (after spark://): "  $SPARK_MASTER
+    sed -i "/SPARK_MASTER/c\SPARK_MASTER=\"$SPARK_MASTER\"" $config_path
+else
+    echo "Verify the Spark Master route below (found at localhost:8080 on your VM's browser):"
+    echo $SPARK_MASTER
+    read -p "Is this route correct? (y/n): " confirm
+    if [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]]
+    then
+        :
+    else
+        read -p "Get the Spark Master route from localhost:8080 on your VM's browser and enter it here (after spark://): "  $SPARK_MASTER
+        sed -i "/SPARK_MASTER/c\SPARK_MASTER=\"$SPARK_MASTER\"" $config_path
+    fi
+fi
+
 # Stop Spark slave
-read -p "Get the Spark Master route from localhost:8080 on your VM's browser and enter it here (after spark://): "  spark_master_url
 echo "Stopping Spark slave..."
-$opc_path/spark/spark-2.2.1-bin-hadoop2.7/sbin/stop-slave.sh $spark_master_url
+$opc_path/spark/spark-2.2.1-bin-hadoop2.7/sbin/stop-slave.sh $SPARK_MASTER
 
 # Stop Spark master
 echo "Stopping Spark master..."
