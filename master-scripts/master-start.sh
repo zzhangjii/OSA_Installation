@@ -8,6 +8,8 @@ config_path=$PWD/../config.txt
 
 if grep -q "SPARK_MASTER" $environment_path;
 then
+    :
+else
     sed -i -e "\$aSPARK_MASTER=" $config_path
 fi
 
