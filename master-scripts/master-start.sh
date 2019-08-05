@@ -6,7 +6,7 @@
 opc_path=(/home/opc)
 config_path=$PWD/../config.txt
 
-if grep -q "SPARK_MASTER" $environment_path;
+if grep -q "SPARK_MASTER" $config_path;
 then
     :
 else
@@ -30,8 +30,8 @@ $opc_path/spark/spark-2.2.1-bin-hadoop2.7/sbin/start-master.sh
 # Check or set the Spark master route
 if [ -z "$SPARK_MASTER" ]
 then
-    read -p "Get the Spark Master route from localhost:8080 on your VM's browser and enter it here (after spark://): "  $SPARK_MASTER
-    sed -i "/SPARK_MASTER/c\SPARK_MASTER=\"$SPARK_MASTER\"" $config_path
+    read -p "Get the Spark Master route from localhost:8080 on your VM's browser and enter it here (after spark://): "  SPARK_MASTER
+    sed -i "/SPARK_MASTER/c\SPARK_MASTER=$SPARK_MASTER" $config_path
 else
     echo "Verify the Spark Master route below (found at localhost:8080 on your VM's browser):"
     echo $SPARK_MASTER
@@ -40,8 +40,8 @@ else
     then
         :
     else
-        read -p "Get the Spark Master route from localhost:8080 on your VM's browser and enter it here (after spark://): "  $SPARK_MASTER
-        sed -i "/SPARK_MASTER/c\SPARK_MASTER=\"$SPARK_MASTER\"" $config_path
+        read -p "Get the Spark Master route from localhost:8080 on your VM's browser and enter it here (after spark://): "  SPARK_MASTER
+        sed -i "/SPARK_MASTER/c\SPARK_MASTER=$SPARK_MASTER" $config_path
     fi
 fi
 
