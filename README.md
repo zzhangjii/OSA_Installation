@@ -1,5 +1,5 @@
-# OSA Installation
-This document provides instructions for using shell scripts to install Oracle Stream Analytics (OSA) on an Oracle Linux VM, as well as a step-by-step breakdown for how to install OSA manually.
+# GGBG-Kafka-OSA-ElasticSearch Pipeline setup
+This document provides instructions for using shell scripts to install and set up a data pipeline from GoldenGate Bigdata to Oracle Stream Analytics (OSA) and open-source visualization tool (Elastic Search) on Oracle Cloud.
 
 ### Prerequisites
 * Virtual Machine running Oracle Linux 7.6 with SSH access
